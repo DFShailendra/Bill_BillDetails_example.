@@ -2,6 +2,7 @@
 using CustomerBillDetails.Repository;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +28,9 @@ namespace CustomerBillDetails.Controllers
         // GET: Detail/Create
         public ActionResult Create()
         {
+            DetailRepository detailRepository = new DetailRepository();
+            dynamic mymodel = new ExpandoObject();
+
             return View();
         }
 

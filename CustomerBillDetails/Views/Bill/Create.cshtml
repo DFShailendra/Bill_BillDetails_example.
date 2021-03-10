@@ -1,5 +1,5 @@
 ﻿@model CustomerBillDetails.Models.BillModel
-@model_1 CustomerBillDetails.Models.DetailModel
+
 
 
 
@@ -67,32 +67,36 @@
         <div class="form-group text-center">
             <div class="col-md-offset-2 col-md-6">
                 <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add Detail" onclick="myFunction()" class="btn btn-default" />
+                
             </div>
         </div>
     </div>
-
-
-
-
 
 }
+    
+    <div id="add_detail" style="display:none">
+        @RenderPage("~/Views/Detail/Create.cshtml")
+    </div>
 
 <div>
-    <div id='myModal' class='modal'>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div id='myModalContent'>ADD Details</div>
-            </div>
-        </div>
-
-    </div>
-    <!--@Html.ActionLink("Add Details", "Create", "Detail", null, new { @style = "width:100px; height:50px" }) |-->
+  
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 @section scripts
 {
+    <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("add_detail");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -102,11 +106,6 @@
                 changeyear: true
             });
         });
-    </script>
-    <script type="text/javascript">
-        ShowModelPopUp = function () {
-            window.showModalDialog('/Detail/Create', "WindowPopup", 'width=400px,height=400px');
-        }
     </script>
 }
 
