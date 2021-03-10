@@ -1,0 +1,60 @@
+﻿@model CustomerBillDetails.Models.BillModel
+
+<div>
+    <h4>BillModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BillId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model. */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

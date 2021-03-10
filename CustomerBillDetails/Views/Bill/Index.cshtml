@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CustomerBillDetails.Models.BillModel>
+
+<h1>Bill List</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BillId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.BillId }) |
+            <!--@Html.ActionLink("Details", "Details", new {  id=item.BillId }) |-->
+            @Html.ActionLink("Delete", "Delete", new { id = item.BillId })
+        </td>
+    </tr>
+}
+
+</table>
