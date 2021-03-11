@@ -16,7 +16,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.ItemName, null, "id_itemname", new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ItemName, "Select Item Name", new { @class = "text-danger" })
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Quantity, null, "id_quantity", new { htmlAttributes = new { onchange = "getTotal()", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Quantity, "Quantity", new { @class = "text-danger" })
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ItemRate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.ItemRate, null, "id_rate", new { htmlAttributes = new { onchange = "getTotal()", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ItemRate, "Item Rate", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Total, null, "id_total" ,new { htmlAttributes = new { @class = "form-control"} })
                     @Html.ValidationMessageFor(model => model.Total, "Total", new { @class = "text-danger" })
                 </div>
             </div>
@@ -53,10 +53,22 @@
         <div>
             <div class="form-group">
                 <div class="col-md-offset-2">
-                    <input type="submit" value="ADD" class="btn btn-default" />
+                    <input type="button" value="ADD" class="btn btn-default" id="btnAddRow" />
                 </div>
             </div>
         </div>
+
+        <table id="detailTable" border="1" width="80%">
+            <thead>
+                <tr style="font-weight:bold;">
+                    <th>Item Name</th>
+                    <th>Item Quantity</th>
+                    <th>Item Rate</th>
+                    <th>Item Total</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
     </div>
 
@@ -68,7 +80,42 @@
     @Html.ActionLink("Back to List", "Index", "Detail")
     </div>
 -->
+@section scripts
+{
+    <script>
+        function getTotal() {
+            value1 = parseInt(document.getElementById("id_quantity").value);
+            value2 = parseInt(document.getElementById("id_rate").value);
+            if (!value1 == "" && !value2 == "") {
+                sum = value1 * value2;
+                document.getElementById("id_total").value = sum;
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btnAddRow").click(function () {
+                debugger;
+                //Getting value from to populate
+                var name = $("#id_itemname").val();
+                var quantity = $("#id_quantity").val();
+                var rate = $("#id_rate").val();
+                var total = $("#id_total").val();
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                //Prepare TR to add in Table
+                var tr;
+                tr = $('<tr/>');
+                tr.append("<td>" + name + "</td>");
+                tr.append("<td>" + quantity + "</td>");
+                tr.append("<td>" + rate + "</td>");
+                tr.append("<td>" + total + "</td>");
+                $('#detailTable').append(tr);
+
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
