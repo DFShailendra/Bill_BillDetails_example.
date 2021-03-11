@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CustomerBillDetails.Models
 {
@@ -12,6 +13,8 @@ namespace CustomerBillDetails.Models
         public int BillDetailsId { get; set; }
 
         public string ItemName { get; set; }
+
+        public SelectList SelecttheItem { get; set; }
 
         [Required(ErrorMessage = "Quantity is required.")]
         public int Quantity { get; set; }
