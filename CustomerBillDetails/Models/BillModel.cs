@@ -26,5 +26,7 @@ namespace CustomerBillDetails.Models
         public int ContactNumber { get; set; }
 
         public int Total { get; set; }
+
+        public DetailModel objDetailModel = new DetailModel();
     }
 }

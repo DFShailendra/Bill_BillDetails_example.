@@ -66,27 +66,102 @@
 
         <div class="form-group text-center">
             <div class="col-md-offset-2 col-md-6">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" id="btnSave" />
                 <input type="submit" value="Add Detail" onclick="myFunction()" class="btn btn-default" />
 
             </div>
         </div>
+
+        <div id="add_detail" style="display:none">
+            <h4>Add Details</h4>
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.objDetailModel.BillDetailsId, new { htmlAttributes = new { @class = "form-control" } })
+
+            <div class="col-md-2">
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.objDetailModel.ItemName, null, "id_itemname", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.objDetailModel.ItemName, "Select Item Name", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.objDetailModel.Quantity, null, "id_quantity", new { htmlAttributes = new { onchange = "getTotal()", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.objDetailModel.Quantity, "Quantity", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.objDetailModel.ItemRate, null, "id_rate", new { htmlAttributes = new { onchange = "getTotal()", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.objDetailModel.ItemRate, "Item Rate", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.objDetailModel.Total, null, "id_total", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.objDetailModel.Total, "Total", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.objDetailModel.BillId, new { htmlAttributes = new { @class = "form-control" } })
+            <div>
+                <div class="form-group">
+                    <div class="col-md-offset-2">
+                        <input type="button" value="ADD" class="btn btn-default" id="btnAddRow" />
+                    </div>
+                </div>
+            </div>
+
+            <table id="detailTable" border="1" width="80%">
+                <thead>
+                    <tr style="font-weight:bold;">
+                        <th>Item_Name</th>
+                        <th>Item_Quantity</th>
+                        <th>Item_Rate</th>
+                        <th>Item_Total</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
     </div>
 
 }
 
-<div id="add_detail" style="display:none">
-    @RenderPage("~/Views/Detail/Create.cshtml")
-</div>
+
 
 <div>
-
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 @section scripts
 {
+    
+    <script>
+        function getTotal() {
+            value1 = parseInt(document.getElementById("id_quantity").value);
+            value2 = parseInt(document.getElementById("id_rate").value);
+            if (!value1 == "" && !value2 == "") {
+                sum = value1 * value2;
+                document.getElementById("id_total").value = sum;
+            }
+        }
+    </script>
     <script type="text/javascript">
         function myFunction() {
             var x = document.getElementById("add_detail");
@@ -127,6 +202,33 @@
                 dateFormat: "dd-mm-yy",
                 changemonth: true,
                 changeyear: true
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#btnSave").click(function () {
+            console.log("btnSave Triggered!");
+
+            var persons = new Array();
+            $("#detailTable tbody tr").each(function () {
+                var row = $(this);
+                var itemDetail = {};
+                itemDetail.Item_Name = row.find("td").eq(0).html();
+                itemDetail.Item_Quantity = row.find("td").eq(1).html();
+                itemDetail.Item_Rate = row.find("td").eq(2).html();
+                itemDetail.Item_Total = row.find("td").eq(3).html();
+                itemDetails.push(itemDetail);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/Bill/AddItemDetails",
+                data: JSON.stringify(itemDetails),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
             });
         });
     </script>

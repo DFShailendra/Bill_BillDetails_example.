@@ -30,6 +30,7 @@ namespace CustomerBillDetails.Repository
             com.Parameters.AddWithValue("@Quantity", obj.Quantity);
             com.Parameters.AddWithValue("@ItemRate", obj.ItemRate);
             com.Parameters.AddWithValue("@Total", obj.Total);
+            com.Parameters.AddWithValue("@BillId", obj.BillId);
 
 
             con.Open();

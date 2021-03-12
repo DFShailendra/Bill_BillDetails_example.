@@ -110,6 +110,17 @@ namespace CustomerBillDetails.Controllers
                 return View();
             }
         }
-       
+
+        public JsonResult AddItemDetails(List<BillModel> itemDetails)
+        {
+            //to do something
+            string data = "";
+            foreach (BillModel itemDetail in itemDetails)
+            {
+                data += itemDetail.objDetailModel.ItemName + " " + itemDetail.objDetailModel.Quantity + "\n";
+            }
+            return Json(data);
+        }
+
     }
 }
