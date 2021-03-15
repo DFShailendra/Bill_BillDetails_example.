@@ -19,6 +19,15 @@ namespace CustomerBillDetails.Controllers
         
         }
 
+        public ActionResult Dropdown()
+        {
+            customer_detailsEntities2 myentity = new customer_detailsEntities2();
+            var getItemList = myentity.Items.ToList();
+            SelectList list = new SelectList(getItemList, "ItemId", "ItemName");
+            ViewBag.ItemNameList = list;
+            return View();
+        }
+
         // GET: Bill/Details/5
         public ActionResult Details(int id)
         {
@@ -111,13 +120,14 @@ namespace CustomerBillDetails.Controllers
             }
         }
 
-        public JsonResult AddItemDetails(List<BillModel> itemDetails)
+
+        public JsonResult AddItemDetails(List<BillModel> persons)
         {
             //to do something
             string data = "";
-            foreach (BillModel itemDetail in itemDetails)
+            foreach (BillModel person in persons)
             {
-                data += itemDetail.objDetailModel.ItemName + " " + itemDetail.objDetailModel.Quantity + "\n";
+                data += person.objDetailModel.ItemName;
             }
             return Json(data);
         }

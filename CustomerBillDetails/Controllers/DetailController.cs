@@ -111,17 +111,17 @@ namespace CustomerBillDetails.Controllers
                 return View();
             }
         }
-        public JsonResult AddItemDetails(List<DetailModel> itemDetails)
+
+        public JsonResult AddItemDetails(List<DetailModel> persons)
         {
             //to do something
             string data = "";
-            foreach (DetailModel itemDetail in itemDetails)
+            foreach (DetailModel person in persons)
             {
-                data += itemDetail.ItemName + " " + itemDetail.Quantity + "\n";
+                data += person.ItemName;
             }
             return Json(data);
         }
-
 
     }
 }

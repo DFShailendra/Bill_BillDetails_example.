@@ -58,7 +58,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Total, null, "id_amount", new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Total, "Total", new { @class = "text-danger" })
                 </div>
             </div>
@@ -66,7 +66,8 @@
 
         <div class="form-group text-center">
             <div class="col-md-offset-2 col-md-6">
-                <input type="submit" value="Create" class="btn btn-default" id="btnSave" />
+                <input type="submit" value="Create" class="btn btn-default"/>
+                
                 <input type="submit" value="Add Detail" onclick="myFunction()" class="btn btn-default" />
 
             </div>
@@ -121,6 +122,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2">
                         <input type="button" value="ADD" class="btn btn-default" id="btnAddRow" />
+                        <input type="button" value="Save" class="btn btn-default" id="btnSave"/>
                     </div>
                 </div>
             </div>
@@ -128,10 +130,10 @@
             <table id="detailTable" border="1" width="80%">
                 <thead>
                     <tr style="font-weight:bold;">
-                        <th>Item_Name</th>
-                        <th>Item_Quantity</th>
-                        <th>Item_Rate</th>
-                        <th>Item_Total</th>
+                        <th>ItemName</th>
+                        <th>ItemQuantity</th>
+                        <th>ItemRate</th>
+                        <th>ItemTotal</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -151,17 +153,27 @@
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 @section scripts
 {
-    
+
     <script>
+        var totallist = new Array();
         function getTotal() {
+            
+            amount = 0;
             value1 = parseInt(document.getElementById("id_quantity").value);
             value2 = parseInt(document.getElementById("id_rate").value);
             if (!value1 == "" && !value2 == "") {
                 sum = value1 * value2;
                 document.getElementById("id_total").value = sum;
+                totallist.push(sum);
             }
+            for (i = 0; i < totallist.length; i++) {
+                amount = amount + totallist[i];
+            }
+            
+            document.getElementById("id_amount").value = amount;
         }
     </script>
+    
     <script type="text/javascript">
         function myFunction() {
             var x = document.getElementById("add_detail");
@@ -212,26 +224,25 @@
             var persons = new Array();
             $("#detailTable tbody tr").each(function () {
                 var row = $(this);
-                var itemDetail = {};
-                itemDetail.Item_Name = row.find("td").eq(0).html();
-                itemDetail.Item_Quantity = row.find("td").eq(1).html();
-                itemDetail.Item_Rate = row.find("td").eq(2).html();
-                itemDetail.Item_Total = row.find("td").eq(3).html();
-                itemDetails.push(itemDetail);
+                var person = {};
+                person.objDetailModel.ItemName = row.find("td").eq(0).html();
+                person.objDetailModel.Quantity = row.find("td").eq(1).html();
+                person.objDetailModel.ItemRate = row.find("td").eq(2).html();
+                person.objDetailModel.Total = row.find("td").eq(3).html();
+                persons.push(person);
             });
 
             $.ajax({
                 type: "POST",
                 url: "/Bill/AddItemDetails",
-                data: JSON.stringify(itemDetails),
+                data: JSON.stringify(persons),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (data) {
-                    alert(data);
-                }
+                
             });
         });
     </script>
+
 }
 
 

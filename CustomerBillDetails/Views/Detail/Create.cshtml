@@ -43,7 +43,7 @@
             <div class="form-group">
 
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Total, null, "id_total" ,new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.EditorFor(model => model.Total, null, "id_total", new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Total, "Total", new { @class = "text-danger" })
                 </div>
             </div>
@@ -54,6 +54,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2">
                     <input type="button" value="ADD" class="btn btn-default" id="btnAddRow" />
+                    <input type="submit" value="Save" class="btn btn-default" id="btnSave"/>
                 </div>
             </div>
         </div>
@@ -111,6 +112,33 @@
                 tr.append("<td>" + total + "</td>");
                 $('#detailTable').append(tr);
 
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#btnSave").click(function() {
+            console.log("btnSave Triggered!");
+
+            var persons = new Array();
+            $("#detailTable tbody tr").each(function () {
+                var row = $(this);
+                var person = {};
+                person.ItemName = row.find("td").eq(0).html();
+                person.Quantity = row.find("td").eq(1).html();
+                person.ItemRate = row.find("td").eq(2).html();
+                person.Total = row.find("td").eq(3).html();
+                persons.push(person);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/Detail/AddItemDetails",
+                data: JSON.stringify(persons),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
             });
         });
     </script>
