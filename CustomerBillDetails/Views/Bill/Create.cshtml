@@ -7,85 +7,85 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h1>Create New Bill</h1>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BillId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BillId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BillId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BillNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BillNumber, "Bill Number", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BillDate, "Date", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CustomerName, "Customer Name", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-
-        <div class="form-group">
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactNumber, "Contact Number", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Total, "Total", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group text-center">
-        <div class="col-md-offset-2 col-md-6">
-            <input type="submit" value="Create" onclick="emptyArray()" class="btn btn-default" />
-
-            <input type="button" value="Add Detail" onclick="myFunction()" class="btn btn-default" />
-
-            <div>
-                @Html.ActionLink("Add Detail", "Create", "Detail")
-            </div>
-
-        </div>
-    </div>
-    
-    <div id="add_detail" style="display:none">
-        <h4>Add Details</h4>
-
+    <div class="form-horizontal">
+        <h1>Create New Bill</h1>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.objDetailModel.BillDetailsId, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BillId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BillId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BillId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BillNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BillNumber, "Bill Number", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BillDate, "Date", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomerName, "Customer Name", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ContactNumber, "Contact Number", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Total, "Total", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Create" onclick="emptyArray()" class="btn btn-default" />
+
+                <input type="button" value="Add Detail" onclick="myFunction()" class="btn btn-default" />
+
+                <div>
+                    @Html.ActionLink("Add Detail", "Create", "Detail")
+                </div>
+
+            </div>
+        </div>
+
+        <div id="add_detail" style="display:none">
+            <h4>Add Details</h4>
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.objDetailModel.BillDetailsId, new { htmlAttributes = new { @class = "form-control" } })
 
 
-                <div class="col-md-2">
+            <div class="col-md-2">
                 <div class="form-group">
 
                     <div class="col-md-10">
@@ -127,8 +127,8 @@
             <div>
                 <div class="form-group">
                     <div class="col-md-offset-2">
-                        <input type="button" value="ADD" class="btn btn-default"  id="btnAddRow"/>
-                        <input type="button" value="Save" class="btn btn-default" id="btnSave"/>
+                        <input type="button" value="ADD" class="btn btn-default" id="btnAddRow" />
+                        <input type="button" value="Save" class="btn btn-default" id="btnSave" />
                     </div>
                 </div>
             </div>
@@ -145,156 +145,154 @@
                 <tbody></tbody>
             </table>
         </div>
-         
+
+    </div>
+
+}
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
-    }
-
-
-
-
-               
-            <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-
-            <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-            @section scripts
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section scripts
 {
 
-                <script>
-                    var totallist = new Array();
-                    function getTotal() {
+    <script>
+        var totallist = new Array();
+        function getTotal() {
 
-                        amount = 0;
-                        value1 = parseInt(document.getElementById("id_quantity").value);
-                        value2 = parseInt(document.getElementById("id_rate").value);
-                        if (!value1 == "" && !value2 == "") {
-                            sum = value1 * value2;
-                            document.getElementById("id_total").value = sum;
-                            totallist.push(sum);
-                        }
-                        for (i = 0; i < totallist.length; i++) {
-                            amount = amount + totallist[i];
-                        }
-
-                        document.getElementById("Total").value = amount;
-                    }
-                    function emptyArray() {
-                        totallist = [];
-                    }
-                </script>
-                
-                <script type="text/javascript">
-                    function myFunction() {
-                        var x = document.getElementById("add_detail");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
-                <script>
-                    $(document).ready(function () {
-                        $("#btnAddRow").click(function () {
-                            debugger;
-                            //Getting value from to populate
-                            var name = $("#id_itemname").val();
-                            var quantity = $("#id_quantity").val();
-                            var rate = $("#id_rate").val();
-                            var total = $("#id_total").val();
-
-                            //Prepare TR to add in Table
-                            var tr;
-                            tr = $('<tr/>');
-                            tr.append("<td>" + name + "</td>");
-                            tr.append("<td>" + quantity + "</td>");
-                            tr.append("<td>" + rate + "</td>");
-                            tr.append("<td>" + total + "</td>");
-                            $('#detailTable').append(tr);
-                            document.getElementById("id_itemname").value = '';
-                            document.getElementById("id_quantity").value = '';
-                            document.getElementById("id_rate").value = '';
-                            document.getElementById("id_total").value = '';
-                        });
-                    });
-                </script>
-
-                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-                <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-                <script>
-                    $(document).ready(function () {
-                        $(".datepicker").datepicker({
-                            dateFormat: "dd-mm-yy",
-                            changemonth: true,
-                            changeyear: true
-                        });
-                    });
-                </script>
-                <script type="text/javascript">
-                    $("#btnSave").click(function () {
-                        console.log("btnSave Triggered!");
-
-                        
-
-                        var persons = new Array();
-                        $("#detailTable tbody tr").each(function () {
-                            var row = $(this);
-                            var person = {};
-                            person.BillDetailsId = 0;
-                            person.BillId = 0;
-                            person.ItemName = row.find("td").eq(0).html();
-                            person.Quantity = row.find("td").eq(1).html();
-                            person.ItemRate = row.find("td").eq(2).html();
-                            person.Total = row.find("td").eq(3).html();
-                            persons.push(person);
-                        });
-
-                        var BillId = document.getElementById("BillId").value;
-                        var BillNumber = document.getElementById("BillNumber").value;
-                        var BillDate = document.getElementById("BillDate").value;
-                        var CustomerName = document.getElementById("CustomerName").value;
-                        var ContactNumber = document.getElementById("ContactNumber").value;
-                        var Total = document.getElementById("Total").value;
-                        //var objDetailModel = JSON.stringify(persons);
-                        
-
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            url: "/Bill/Create",
-                            data: JSON.stringify({
-                                BillId: BillId,
-                                BillNumber: BillNumber,
-                                BillDate: BillDate,
-                                CustomerName: CustomerName,
-                                ContactNumber: ContactNumber,
-                                Total: Total,
-                                objDetailModelList: persons
-                            }),
-                            success: function (hours) {
-                                $("#tdCalcHours").html(hours.Display);
-                            },
-                            error: function (e) {
-                                alert('Error: ' + e.Message);
-                            }
-                        });
-
-                        //data: "{objBillModel:" + BillDetail + ", objDetailModel:" + persons + "}",
-
-                        //$.ajax({
-                        //    type: "POST",
-                        //    url: "/Bill/create",
-                        //    data: "{objBillModel:" + data + ", objDetailModel:" + persons + "}",
-                        //    contentType: "application/json; charset=utf-8",
-                        //    dataType: "json",
-
-                        //});
-                    });
-                </script>
-
+            amount = 0;
+            value1 = parseInt(document.getElementById("id_quantity").value);
+            value2 = parseInt(document.getElementById("id_rate").value);
+            if (!value1 == "" && !value2 == "") {
+                sum = value1 * value2;
+                document.getElementById("id_total").value = sum;
+                totallist.push(sum);
             }
+            for (i = 0; i < totallist.length; i++) {
+                amount = amount + totallist[i];
+            }
+
+            document.getElementById("Total").value = amount;
+        }
+        function emptyArray() {
+            totallist = [];
+        }
+    </script>
+
+    <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("add_detail");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btnAddRow").click(function () {
+                //Getting value from to populate
+                var name = $("#id_itemname").val();
+                var quantity = $("#id_quantity").val();
+                var rate = $("#id_rate").val();
+                var total = $("#id_total").val();
+
+                //Prepare TR to add in Table
+                var tr;
+                tr = $('<tr/>');
+                tr.append("<td>" + name + "</td>");
+                tr.append("<td>" + quantity + "</td>");
+                tr.append("<td>" + rate + "</td>");
+                tr.append("<td>" + total + "</td>");
+                $('#detailTable').append(tr);
+                document.getElementById("id_itemname").value = '';
+                document.getElementById("id_quantity").value = '';
+                document.getElementById("id_rate").value = '';
+                document.getElementById("id_total").value = '';
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#btnSave").click(function () {
+            console.log("btnSave Triggered!");
+
+
+
+            var persons = new Array();
+            $("#detailTable tbody tr").each(function () {
+                var row = $(this);
+                var person = {};
+                person.BillDetailsId = 0;
+                person.BillId = 0;
+                person.ItemName = row.find("td").eq(0).html();
+                person.Quantity = row.find("td").eq(1).html();
+                person.ItemRate = row.find("td").eq(2).html();
+                person.Total = row.find("td").eq(3).html();
+                persons.push(person);
+            });
+
+            var BillId = document.getElementById("BillId").value;
+            var BillNumber = document.getElementById("BillNumber").value;
+            var BillDate = document.getElementById("BillDate").value;
+            var CustomerName = document.getElementById("CustomerName").value;
+            var ContactNumber = document.getElementById("ContactNumber").value;
+            var Total = document.getElementById("Total").value;
+            var objDetailModelList = JSON.stringify(persons);
+            var objBillModel = JSON.stringify({
+                BillId: BillId,
+                BillNumber: BillNumber,
+                BillDate: BillDate,
+                CustomerName: CustomerName,
+                ContactNumber: ContactNumber,
+                Total: Total
+            });
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "/Bill/Create",
+                data: "{ objBillModel: " + objBillModel +", objDetailModelList: " + objDetailModelList + " }",
+                success: function (hours) {
+                    $("#tdCalcHours").html(hours.Display);
+                },
+                error: function (e) {
+                    alert('Error: ' + e.Message);
+                }
+            });
+
+            //data: "{objBillModel:" + BillDetail + ", objDetailModel:" + persons + "}",
+
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Bill/create",
+            //    data: "{objBillModel:" + data + ", objDetailModel:" + persons + "}",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+
+            //});
+        });
+    </script>
+
+}
 
 

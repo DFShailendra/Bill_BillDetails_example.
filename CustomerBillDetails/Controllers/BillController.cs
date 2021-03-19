@@ -43,7 +43,7 @@ namespace CustomerBillDetails.Controllers
 
         // POST: Bill/Create
         [HttpPost]
-        public ActionResult Create(BillModel objBillModel)
+        public ActionResult Create(BillModel objBillModel,List<DetailModel> objDetailModelList)
         {
             //, DetailModel objDetailModel
             try

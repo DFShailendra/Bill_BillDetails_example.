@@ -9,7 +9,6 @@ namespace CustomerBillDetails.Models
 {
     public class DetailModel
     {
-        [Display(Name = "Id")]
         public int BillDetailsId { get; set; }
 
         public string ItemName { get; set; }
