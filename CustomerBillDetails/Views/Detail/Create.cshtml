@@ -111,6 +111,10 @@
                 tr.append("<td>" + rate + "</td>");
                 tr.append("<td>" + total + "</td>");
                 $('#detailTable').append(tr);
+                document.getElementById("id_itemname").value = '';
+                document.getElementById("id_quantity").value = '';
+                document.getElementById("id_rate").value = '';
+                document.getElementById("id_total").value = '';
 
             });
         });
@@ -140,6 +144,7 @@
                     alert(data);
                 }
             });
+
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

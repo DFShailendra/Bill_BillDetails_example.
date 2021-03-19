@@ -28,5 +28,7 @@ namespace CustomerBillDetails.Models
         public int Total { get; set; }
 
         public DetailModel objDetailModel = new DetailModel();
+        public List<DetailModel> objDetailModelList = new List<DetailModel>();
     }
+
 }

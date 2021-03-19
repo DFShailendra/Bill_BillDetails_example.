@@ -43,19 +43,20 @@ namespace CustomerBillDetails.Controllers
 
         // POST: Bill/Create
         [HttpPost]
-        public ActionResult Create(BillModel bill)
+        public ActionResult Create(BillModel objBillModel)
         {
+            //, DetailModel objDetailModel
             try
             {
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    BillRepository billRepository = new BillRepository();
+                    //BillRepository billRepository = new BillRepository();
 
-                    if (billRepository.AddBill(bill))
-                    {
-                        ViewBag.Message = "Bill details added successfully";
-                    }
+                    //if (billRepository.AddBill(objBillModel))
+                    //{
+                    //    ViewBag.Message = "Bill details added successfully";
+                    //}
                 }
 
                 return RedirectToAction("Index");
@@ -127,7 +128,7 @@ namespace CustomerBillDetails.Controllers
             string data = "";
             foreach (BillModel person in persons)
             {
-                data += person.objDetailModel.ItemName;
+                data += person.objDetailModel.ItemName; 
             }
             return Json(data);
         }

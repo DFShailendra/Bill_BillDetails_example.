@@ -36,7 +36,7 @@ namespace CustomerBillDetails.Controllers
 
         // POST: Detail/Create
         [HttpPost]
-        public ActionResult Create(DetailModel obj,FormCollection collection)
+        public ActionResult Create(DetailModel obj)
         {
             try
             {

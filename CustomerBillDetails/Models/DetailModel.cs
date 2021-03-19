@@ -14,10 +14,6 @@ namespace CustomerBillDetails.Models
 
         public string ItemName { get; set; }
 
-        public IEnumerable<SelectListItem> ItemNameList { get; set; }
-
-        public SelectList SelecttheItem { get; set; }
-
         [Required(ErrorMessage = "Quantity is required.")]
         public int Quantity { get; set; }
 
